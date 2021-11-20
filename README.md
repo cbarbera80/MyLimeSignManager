@@ -26,12 +26,13 @@ dependencies: [
 
 ### Content
  
- The library's public interface consists of two methods plus a constructor:
+ The library's public interface consists of three methods plus a constructor:
  
 ```swift
  public init?(baseURL: URL, token: String?, client: String?, uid: String?, id: Int?)
  public func initKeychain(completion: @escaping (MyLimeSignError?) -> Void)
  public func sign(data: Data) throws -> MlSignature
+ public func removeKeychain() throws
  ```
 ### Usage
  
@@ -62,3 +63,8 @@ dependencies: [
  request.addValue(signature.nonce, forHTTPHeaderField: "X-nonce")
  request.addValue(signature.body, forHTTPHeaderField: "X-signature")
    ```
+To remove previously saved private key from keychain call the removeKeychain method:
+
+```swift
+try? signManager.removeKeychain()
+```
