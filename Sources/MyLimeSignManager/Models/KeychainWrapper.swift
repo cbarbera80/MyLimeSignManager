@@ -58,6 +58,25 @@ class KeychainWrapper: Keychain {
         return (item as! SecKey)
     }
     
+    func remove(for tag: String) throws {
+        
+        guard let keyTag = tag.data(using: .utf8) else {
+            throw KeychainWrapperError.invalidTagError
+        }
+        
+        let query: [String: Any] = [kSecClass as String: kSecClassKey,
+                                       kSecAttrApplicationTag as String: keyTag,
+                                       kSecAttrKeyType as String: kSecAttrKeyTypeRSA,
+                                       kSecReturnRef as String: true]
+ 
+        
+        let status = SecItemDelete(query as CFDictionary)
+   
+        guard status == errSecSuccess else {
+            throw KeychainWrapperError.removeError(error: status)
+        }
+    }
+    
     func contains(tag: String) -> Bool {
         
         guard read(for: tag) != nil else { return false }
@@ -70,4 +89,5 @@ enum KeychainWrapperError: Error {
     case createKeyError
     case base64EncodeError
     case addError(error: OSStatus)
+    case removeError(error: OSStatus)
 }

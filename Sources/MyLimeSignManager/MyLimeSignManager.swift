@@ -88,6 +88,11 @@ public class MyLimeSignManager {
         return MlSignature(timestamp: timestamp, body: b64Signature, nonce: nonce)
     }
     
+    /// Remove previously saved private key from keychain
+    public func removeKeychain() throws {
+        try keychain.remove(for: tag)
+    }
+    
     /// Initialize keychain. If keychain already contains a private key return it, else call API to get a valid private key to store in keychain
     public func initKeychain(completion: @escaping (MyLimeSignError?) -> Void) {
         
