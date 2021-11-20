@@ -1,12 +1,21 @@
 # MyLimeSignManager
 
-### Distribution method
- The framework is distributed as a static library (libMyLimeSignManager.a).
-### Installation
-  
-- Copy the file to an application location.
-- Add the library reference within the Frameworks, Libraries and Embedded Content section of the application target.
-- 
+<a name="installation"/>
+
+## Installation
+
+### Swift Package Manager
+
+The [Swift Package Manager](https://swift.org/package-manager/) is a tool for automating the distribution of Swift code and is integrated into the swift compiler. It is in early development, but Alamofire does support its use on supported platforms.
+
+Once you have your Swift package set up, adding MyLimeSignManager as a dependency is as easy as adding it to the dependencies value of your Package.swift.
+
+```swift
+dependencies: [
+    .package(url: "https://github.com/cbarbera80/MyLimeSignManager", from: "1.0.0")
+]
+```
+
 ### Content
  
  The library's public interface consists of two methods plus a constructor:
