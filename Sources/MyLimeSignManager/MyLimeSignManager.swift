@@ -116,4 +116,17 @@ public class MyLimeSignManager {
             
         }
     }
+    
+    public func initKeychain() async throws {
+        
+        return withCheckedThrowingContinuation { continuation in
+            initKeychain { error in
+                if let error = error {
+                    continuation.resume(throwing: error)
+                } else {
+                    continuation.resume(returning: ())
+                }
+            }
+        }
+    }
 }
