@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "MyLimeSignManager"
-  s.version      = "1.0.3"
+  s.version      = "1.0.4"
   s.summary      = "Sign generator for MyLime"
   s.description  = <<-DESC
     Demo
