@@ -25,7 +25,7 @@ class Networking: DataProviderable {
         urlRequest.addValue(auth.token, forHTTPHeaderField: "access-token")
         urlRequest.addValue(auth.client, forHTTPHeaderField: "client")
         urlRequest.addValue(auth.uid, forHTTPHeaderField: "uid")
-        
+        urlRequest.addValue("native", forHTTPHeaderField: "token-type")
         urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
         print(urlRequest.curlString)
