@@ -115,9 +115,8 @@ public class MyLimeSignManager {
            
             do {
                 try self.keychain.write(privateKey: key.privateKey, for: self.tag)
-                completion(MyLimeSignError.writeKeyFailed)
             } catch {
-                completion(MyLimeSignError.keyNotFound)
+                completion(MyLimeSignError.writeKeyFailed)
             }
         }
     }
