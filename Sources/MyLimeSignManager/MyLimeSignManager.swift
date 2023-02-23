@@ -48,7 +48,7 @@ public class MyLimeSignManager {
         guard let token = token, let client = client, let uid = uid, let id = id else {
             return nil
         }
-        let bundleId = Bundle.main.bundleIdentifier
+        let bundleId = Bundle.main.bundleIdentifier ?? "randomkey"
         tag = "\(bundleId).secure.keychain.securekey.\(id)"
         jsonEncoder = JSONEncoder()
         services = MyLimeServices(withEnvironment: .init(baseUrl: baseURL), auth: .init(token: token, client: client, uid: uid))
