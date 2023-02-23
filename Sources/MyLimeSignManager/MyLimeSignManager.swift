@@ -18,6 +18,7 @@ public enum MyLimeSignError: Error {
     case invalidKey
     case invalidJSON
     case invalidSignature
+    case writeKeyFailed
 }   
 
 public struct Auth {
@@ -107,13 +108,17 @@ public class MyLimeSignManager {
                 return
             }
             
-            if let key = pKey {
-                try? self.keychain.write(privateKey: key.privateKey, for: self.tag)
-                completion(nil)
-            } else {
+            guard let key = pKey else {
+                completion(MyLimeSignError.keyNotFound)
+                return
+            }
+           
+            do {
+                try self.keychain.write(privateKey: key.privateKey, for: self.tag)
+                completion(MyLimeSignError.writeKeyFailed)
+            } catch {
                 completion(MyLimeSignError.keyNotFound)
             }
-            
         }
     }
     
